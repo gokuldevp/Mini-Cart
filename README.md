@@ -139,3 +139,26 @@ const styles = {            //Creating object for style
 <img alt="decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/659/659892.png"/>
 <img alt="delete" className="action-icons" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"/>
 ```
+
+* Step 3: Create a new state inside the constructor for CartItem.js
+```
+constructor() {
+    super();
+    this.state = {      // Creating a object state
+        price: 989,
+        title: 'Phone',
+        qty: 2,
+        img: ""
+    }
+}
+```
+
+* Step 4: Use the state inside the jsx
+```
+const {price, title, qty} = this.state; // Object destructuring
+
+{/*Inside jsx*/}
+<div style={{}}>{title}</div>
+<div style={{}}>Rs. {price}</div>
+<div style={{}}>Qty: {qty}</div>
+```

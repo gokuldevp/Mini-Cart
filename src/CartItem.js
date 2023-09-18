@@ -1,16 +1,27 @@
 import React from "react";
 
 class CartItem extends React.Component {
+    constructor() {
+        super();
+        this.state = {      // Creating a object state
+            price: 989,
+            title: 'Mobile Phone',
+            qty: 2,
+            img: ""
+        }
+    }
     render() {
+        const {price, title, qty} = this.state; // Object destructuring
+
         return(
             <div className="cart-item">
                 <div className="left-block">
-                    <img alt="" style={styles.image} /> {/* Applying the created syle*/}
+                    <img alt="" style={styles.image} src=""/> {/* Applying the created syle*/}
                 </div>
                 <div className="right-block">
-                    <div style={{fontSize:25}}>Phone</div>
-                    <div style={{fontSize:25}}>Rs: 100</div>
-                    <div style={{fontSize:25}}>Qty: 1</div>
+                    <div style={{}}>{title}</div>
+                    <div style={{}}>Rs. {price}</div>
+                    <div style={{}}>Qty: {qty}</div>
                     <div className="cart-item-actions">
                         {/* Buttons */}
                         <img alt="increase" className="action-icons" src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"/>
