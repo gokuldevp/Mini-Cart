@@ -78,7 +78,10 @@ npx create-react-app cart
 ```
 * Step 2: remove the unwanted file, only App.js, index.css and index.js remains
 * Step 3: Add css style for the cart items.
-* Step 4: Create new file called CartItem.js (Camel case) for creating the cart components
+
+### CartItem: first component
+
+* Step 1: Create new file called CartItem.js (Camel case) for creating the cart components
 - import React from "react"
 - Create a class called CartItem extending from React.component
 - Create the cart items using jsx
@@ -107,7 +110,7 @@ class CartItem extends React.Component {
 
 export default CartItem;
 ```
-* Step 5: Style the CartItem components
+* Step 2: Style the CartItem components
 - Note: We style in react using objects, we need to write the styles in camel case
 ```
 <img alt="" style={styles.image} /> {/* Applying the created syle*/}
@@ -125,4 +128,13 @@ const styles = {            //Creating object for style
 - Style can also be written directly inside the jsx file style={{}}
 ```
 <div style={{fontSize:25}}>Phone</div>
+```
+
+### Adding state in CartItem
+* Step 1: Create the img tag (for creating the add, minus and delete button for cart)
+* Step 2: Add the alt, className and the src
+```
+<img alt="increase" className="action-icons" src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"/>
+<img alt="decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/659/659892.png"/>
+<img alt="delete" className="action-icons" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"/>
 ```
