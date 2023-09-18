@@ -72,3 +72,53 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 =================================================================================================================================================================
 # Mini Project: Starting the project
 
+* Step 1: Create a react app
+```
+npx create-react-app cart
+```
+* Step 2: remove the unwanted file, only App.js, index.css and index.js remains
+* Step 3: Add css style for the cart items.
+* Step 4: Create new file called CartItem.js (Camel case) for creating the cart components
+- import React from "react"
+- Create a class called CartItem extending from React.component
+- Create the cart items using jsx
+```
+import React from "react";
+
+class CartItem extends React.Component {
+    render() {
+        return(
+            <div className="cart-item">
+                <div className="left-block">
+                    <img alt=""/>
+                </div>
+                <div className="right-block">
+                    <div>Phone</div>
+                    <div>Rs: 100</div>
+                    <div>Qty: 1</div>
+                    <div className="cart-item-actions">
+                        {/* Buttons */}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default CartItem;
+```
+* Step 5: Style the CartItem components
+- Note: We style in react using objects
+```
+<img alt="" style={styles.image} /> {/* Applying the created syle*/}
+
+
+const styles = {            //Creating object for style
+    image: {
+        height: 100,
+        width: 110,
+        borderRadius: 4,
+        backgroundColor: 'pink'
+    }
+}
+```
