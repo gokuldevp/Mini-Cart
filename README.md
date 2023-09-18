@@ -108,7 +108,7 @@ class CartItem extends React.Component {
 export default CartItem;
 ```
 * Step 5: Style the CartItem components
-- Note: We style in react using objects
+- Note: We style in react using objects, we need to write the styles in camel case
 ```
 <img alt="" style={styles.image} /> {/* Applying the created syle*/}
 
@@ -121,4 +121,8 @@ const styles = {            //Creating object for style
         backgroundColor: 'pink'
     }
 }
+```
+- Style can also be written directly inside the jsx file style={{}}
+```
+<div style={{fontSize:25}}>Phone</div>
 ```
