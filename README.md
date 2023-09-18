@@ -131,6 +131,7 @@ const styles = {            //Creating object for style
 ```
 
 ### Adding state in CartItem
+- Note: In JavaScript, the term "state" typically refers to the current condition or data associated with a component or object at a specific point in time. State is used to represent and manage information that can change over time as a result of user interactions, data fetching, or other factors. It's a fundamental concept in building dynamic web applications and is commonly used in libraries and frameworks like React.
 * Step 1: Create the img tag (for creating the add, minus and delete button for cart)
 * Step 2: Add the alt, className and the src
 ```
