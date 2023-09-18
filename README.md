@@ -162,3 +162,23 @@ const {price, title, qty} = this.state; // Object destructuring
 <div style={{}}>Rs. {price}</div>
 <div style={{}}>Qty: {qty}</div>
 ```
+### Events in React [Handling events docs](https://react.dev/learn/responding-to-events#adding-event-handlers)
+
+* Step 1: Add onClick in the jsx in CartItem.js
+```
+<img 
+    alt="increase"
+    className="action-icons" 
+    src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"
+    onClick={this.increaseQuantity}
+/>
+```
+
+* Step 2: Create a function to increase quantity inside the class Cartitem
+    - notes: if we are using normal function syntax we need to bind the function with this onClick={this.increaseQuantity.bind(this)}
+```
+    increaseQuantity = () => {
+        console.log(this.state.qty);
+    }
+```
+
