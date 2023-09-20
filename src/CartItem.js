@@ -14,21 +14,26 @@ class CartItem extends React.Component {
 
     /**
      * Increases the quantity by 1 and updates the component's state.
-     * It logs the current quantity to the console before the update.
+     * It logs the current quantity to the console before the update and after the update
      */
     increaseQuantity = () => {
         console.log(this.state.qty); // Log the current quantity to the console
         
         // set state form 1:
-        // this.setState({
-        //     qty: this.state.qty + 1, // Increment the quantity by 1
+        // this.setState((prevState) => ({
+        // qty: prevState.qty + 1
+        // }), () => {
+        // console.log(this.state.qty);
         // });
+        
 
         // set state form 2: - if prevState require, user this
         this.setState((prevState) => {
             return {
                 qty: prevState.qty +1
             }
+        }, () => {
+            console.log(this.state.qty)
         });
     };
 

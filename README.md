@@ -185,31 +185,51 @@ const {price, title, qty} = this.state; // Object destructuring
 * Step 3: hallow merge to update the 'qty' state
 1. Note 1: Shallow merging in React refers to the process of merging two or more objects or states while only updating the top-level properties of those objects
 2. Note 2: It allow to re-render the page one the update of the state is done
-```
-/**
-    * Increases the quantity by 1 and updates the component's state.
-    * It logs the current quantity to the console before the update.
-    */
-increaseQuantity = () => {
-    console.log(this.state.qty); // Log the current quantity to the console
-    
-    // set state form 1:
-    // this.setState({
-    //     qty: this.state.qty + 1, // Increment the quantity by 1
-    // });
+3. Note 3: setState is as asynchronous, we can user another callback function on the setstate for doing anyother operation for the state
+```jsx
+   /**
+     * Increases the quantity by 1 and updates the component's state.
+     * It logs the current quantity to the console before the update and after the update
+     */
+    increaseQuantity = () => {
+        console.log(this.state.qty); // Log the current quantity to the console
+        
+        // set state form 1:
+        // this.setState((prevState) => ({
+        // qty: prevState.qty + 1
+        // }), () => {
+        // console.log(this.state.qty);
+        // });
+        
 
-    // set state form 2: - if prevState require, user this
-    this.setState((prevState) => {
-        return {
-            qty: prevState.qty +1
-        }
-    });
-};
+        // set state form 2: - if prevState require, user this
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty +1
+            }
+        }, () => {
+            console.log(this.state.qty)
+        });
+    };
+
+    /**
+     * Decrease the quantity by 1 and updates the component's state if the quantity is more than 0.
+     */
+    decreaseQuantity = () => {
+        this.setState((prevState) => {
+            if (prevState.qty>0) {
+                return {
+                    qty: prevState.qty - 1
+                }
+            }
+        });
+    }
 ```
 
 ## Batching in React
 
-Batching in React refers to the process by which multiple state updates or side effects are grouped together and executed in a single batch or render cycle, rather than immediately. React uses batching to optimize performance by reducing unnecessary re-renders and DOM updates.
+Batching in React refers to the process by which multiple state updates or side effects are grouped together and executed in a single batch or render cycle, rather than immediately. React uses batching to optimize performance by reducing unnecessary re-renders and DOM updates. The batching applies only if we are not using the
+callback function.
 
 Here are some key points to understand about batching in React:
 
