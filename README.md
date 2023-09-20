@@ -207,3 +207,50 @@ increaseQuantity = () => {
 };
 ```
 
+## Batching in React
+
+Batching in React refers to the process by which multiple state updates or side effects are grouped together and executed in a single batch or render cycle, rather than immediately. React uses batching to optimize performance by reducing unnecessary re-renders and DOM updates.
+
+Here are some key points to understand about batching in React:
+
+- **State Updates**: When you call `setState` to update the state of a component, React doesn't immediately re-render the component. Instead, it batches multiple state updates together and performs a single re-render. This behavior is important because it prevents unnecessary re-renders and ensures better performance.
+
+- **Event Handlers**: Event handlers like click or input event handlers are also batched. This means that if multiple state updates occur within the same event handler function, React will batch them together and perform a single re-render.
+
+- **Component Lifecycles**: Component lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` are also batched. This means that if you make multiple `setState` calls within these methods, React will batch the updates for more efficient rendering.
+
+- **React Concurrent Mode**: React Concurrent Mode is an experimental feature that allows React to work on multiple tasks concurrently. In Concurrent Mode, React is even more aggressive about batching and prioritizing updates to ensure a smoother user experience.
+
+Here's an example to illustrate batching in React:
+
+```jsx
+import React, { Component } from 'react';
+
+class Counter extends Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
+
+  handleClick = () => {
+    // These state updates are batched together
+    this.setState({ count: this.state.count + 1 });
+    this.setState({ count: this.state.count + 1 });
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.handleClick}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default Counter;
+```
+
