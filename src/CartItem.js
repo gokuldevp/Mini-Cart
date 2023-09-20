@@ -6,16 +6,45 @@ class CartItem extends React.Component {
         this.state = {      // Creating a object state
             price: 989,
             title: 'Mobile Phone',
-            qty: 2,
+            qty: 0,
             img: ""
         }
+        // this.increaseQuantity = this.increaseQuantity.bind(this);
     }
 
+    /**
+     * Increases the quantity by 1 and updates the component's state.
+     * It logs the current quantity to the console before the update.
+     */
     increaseQuantity = () => {
-        console.log(this.state.qty);
+        console.log(this.state.qty); // Log the current quantity to the console
+        
+        // set state form 1:
+        // this.setState({
+        //     qty: this.state.qty + 1, // Increment the quantity by 1
+        // });
+
+        // set state form 2: - if prevState require, user this
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty +1
+            }
+        });
+    };
+
+    /**
+     * Decrease the quantity by 1 and updates the component's state if the quantity is more than 0.
+     */
+    decreaseQuantity = () => {
+        this.setState((prevState) => {
+            if (prevState.qty>0) {
+                return {
+                    qty: prevState.qty - 1
+                }
+            }
+        });
     }
 
-    
 
     render() {
         const {price, title, qty, img} = this.state; // Object destructuring
@@ -41,6 +70,7 @@ class CartItem extends React.Component {
                             alt="decrease" 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/512/659/659892.png"
+                            onClick={this.decreaseQuantity}
                         />
                             <img alt="delete" 
                             className="action-icons" 
