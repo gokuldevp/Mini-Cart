@@ -10,7 +10,23 @@ class CartItem extends React.Component {
             img: ""
         }
         // this.increaseQuantity = this.increaseQuantity.bind(this);
+        // this.testing() // this is now only re-rending once as this is fixed as per observation
     }
+
+    // testing = () => {
+    //     const promise = new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             resolve('done');
+    //         }, 2000)
+    //     });
+
+    //     promise.then(() => {
+    //         this.setState({qty: this.state.qty + 1})
+    //         this.setState({qty: this.state.qty + 1})
+    //         this.setState({qty: this.state.qty + 1})
+    //         console.log(this.state)
+    //     })
+    // }
 
     /**
      * Increases the quantity by 1 and updates the component's state.

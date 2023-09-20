@@ -195,11 +195,11 @@ const {price, title, qty} = this.state; // Object destructuring
         console.log(this.state.qty); // Log the current quantity to the console
         
         // set state form 1:
-        // this.setState((prevState) => ({
-        // qty: prevState.qty + 1
-        // }), () => {
-        // console.log(this.state.qty);
-        // });
+        this.setState(({
+        qty: prevState.qty + 1
+        }), () => {
+        console.log(this.state.qty);
+        });
         
 
         // set state form 2: - if prevState require, user this
