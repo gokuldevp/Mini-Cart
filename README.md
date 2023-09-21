@@ -279,3 +279,30 @@ export default Counter;
 * Step 2 - Create a Cart react component inside the Cart.js file
 * Step 3 - Add the cart component inside the App.js
 * Step 4 - Add the cartitem component inside the CartItem.js
+
+### Rendering list in react
+1. We can render the elements of the array directly my adding the list inside the jsx as javascript 
+```
+render() {
+    const myList = [1,2,3,4,5]
+    return (
+        <div className="cart">
+            {myList}
+        </div>
+    )
+}
+```
+
+2. We can do operation on list using the map function
+```
+render() {
+    const myList = [1,2,3,4,5]
+    return (
+        <div className="cart">
+            {myList.map((item) => {
+                return item * 5 + " "
+            })}
+        </div>
+    )
+}
+```

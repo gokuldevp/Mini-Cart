@@ -1,0 +1,89 @@
+[33mcommit fbb672013b3fc5b326cb4e20c6d4e7a5e9bd38e9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Thu Sep 21 07:57:25 2023 +0530
+
+    Creating the Cart component
+
+[33mcommit f46453123abd313dd4973a428f4e432bff590611[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Thu Sep 21 07:53:14 2023 +0530
+
+    Creating the Cart component
+
+[33mcommit bc5e7da26ed888ee734516842fce25401e16e3b6[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Wed Sep 20 08:19:36 2023 +0530
+
+    Batching and promise
+
+[33mcommit ae391ec8dc9a19630461286249947dc76203d949[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Wed Sep 20 07:47:27 2023 +0530
+
+    Adding callback to the setState function to handle the state after the state is updated
+
+[33mcommit 8248e168779173b0c5ea370bd6abd6a1f3f76411[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Wed Sep 20 07:29:04 2023 +0530
+
+    Batching in react
+
+[33mcommit 1cc1d17b80ca34faa1df57402c268d5981b82cc4[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Wed Sep 20 07:20:43 2023 +0530
+
+    using set state to handle the increase quantity and decrease quanatiy
+
+[33mcommit f881b0d3144ebc6b7aba237eb818734b5d831e5a[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 07:22:21 2023 +0530
+
+    Adding Increament function
+
+[33mcommit ce9e49c2a7e13d7f5f1a57da31a50f99bf07f7cf[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 06:47:18 2023 +0530
+
+    Adding state
+
+[33mcommit 9efd65655b7b16a47d079121e390cf1f77762102[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 06:30:07 2023 +0530
+
+    state readme
+
+[33mcommit 001b9a6d6d1774571cf23bf13b62d536c64c01fb[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 06:27:46 2023 +0530
+
+    Add the increase, decrease and delete buttons
+
+[33mcommit 0cfd50d4e46171af16fcf3c9c18fa9a8686c48f4[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 06:10:53 2023 +0530
+
+    Creating the cart item and applying syle as objcts
+
+[33mcommit 6aaf3907ef3b90dcb94bbd80fa476e60e60ce977[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 06:08:51 2023 +0530
+
+    Creating the cart item and applying syle as objcts
+
+[33mcommit 3c5e643a412a68bb231d8cfa068d045e7f350d71[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 05:34:49 2023 +0530
+
+    Add styling to cart items
+
+[33mcommit fa820aee23480069e7539cb7f62bfc02b4f33f1b[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 05:13:39 2023 +0530
+
+    first commit
+
+[33mcommit 76aa0b6d0bf4eef9336ebe4dc412db50ec283b79[m
+Author: Gokul Dev P <gokuldev.p123@gmail.com>
+Date:   Mon Sep 18 04:53:53 2023 +0530
+
+    Initialize project using Create React App
