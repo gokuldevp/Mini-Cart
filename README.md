@@ -274,3 +274,8 @@ class Counter extends Component {
 export default Counter;
 ```
 
+### Creating Cart Component
+* Step 1 - Create a Cart.js file
+* Step 2 - Create a Cart react component inside the Cart.js file
+* Step 3 - Add the cart component inside the App.js
+* Step 4 - Add the cartitem component inside the CartItem.js
