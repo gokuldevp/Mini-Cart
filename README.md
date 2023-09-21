@@ -226,6 +226,24 @@ const {price, title, qty} = this.state; // Object destructuring
     }
 ```
 
+- Note: previously(older react versions) promise where re-rendering multiple times, as per current test this is fixed
+```jsx
+    testing = () => {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('done');
+            }, 2000)
+        });
+
+        promise.then(() => {
+            this.setState({qty: this.state.qty + 1})
+            this.setState({qty: this.state.qty + 1})
+            this.setState({qty: this.state.qty + 1})
+            console.log(this.state)
+        })
+    }
+```
+
 ## Batching in React
 
 Batching in React refers to the process by which multiple state updates or side effects are grouped together and executed in a single batch or render cycle, rather than immediately. React uses batching to optimize performance by reducing unnecessary re-renders and DOM updates. The batching applies only if we are not using the
@@ -305,4 +323,42 @@ render() {
         </div>
     )
 }
+```
+
+### Prompts
+- Note: In React, "props" is short for "properties," and it refers to a mechanism for passing data from a parent component to a child component
+- Example 
+```js
+// ParentComponent.js
+import React from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const greeting = 'Hello, React!';
+  const age = 25;
+
+  return (
+    <div>
+      <ChildComponent message={greeting} age={age} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+```
+
+```js
+// ChildComponent.js
+import React from 'react';
+
+function ChildComponent(props) {
+  return (
+    <div>
+      <p>{props.message}</p>
+      <p>Age: {props.age}</p>
+    </div>
+  );
+}
+
+export default ChildComponent;
 ```
