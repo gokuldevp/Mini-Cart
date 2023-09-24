@@ -582,3 +582,179 @@ function App() {
 
 export default App;
 ```
+
+### Moving state from Cart to App and Adding products count to Navbar
+* Step 1: Convert the App component to a Class comoponents
+* Step 2: move all the state and funcations from the Cart.js to App.js
+* Step 3: Convert the Cart .js to a function component
+* Step 4: Add the state and function as propts to the Cart
+* Step 5: Add the count(create a new function to get the count) to the Navbar as propts
+
+- App.js
+```js
+import React from "react";
+import Cart from "./Cart";
+import Navbar from "./Navbar";
+
+class App extends React.Component {
+  constructor () {
+      super();
+      this.state = {
+          products: [
+              {
+                  price: 19999,
+                  title: 'Mobile Phone',
+                  qty: 0,
+                  img: "",
+                  id: 1
+              },
+              {
+                  price: 49999,
+                  title: 'Computer',
+                  qty: 0,
+                  img: "",
+                  id: 2
+              },
+              {
+                  price: 2000,
+                  title: 'Memmory card',
+                  qty: 0,
+                  img: "",
+                  id: 3
+              },
+          ]
+      }
+  }
+
+  handleIncreaseQuantity = (product) => {
+      const products = this.state.products;
+      const index = products.indexOf(product)
+      products[index].qty ++;
+      console.log(`Quantity of id: ${product.id} has been increased by 1`);
+      this.setState({
+          products
+      })
+  }
+
+  handleDecreaseQuantity = (product) => {
+      const products = this.state.products;
+      const index = products.indexOf(product)
+      if (products[index].qty > 0) {
+          products[index].qty --;
+          console.log(`Quantity of id: ${product.id} has been Decreased by 1`);
+          this.setState({
+              products
+          })
+      } else {
+          console.log(`Quantity of id: ${product.id} can't be decreased further`);
+      }
+  }
+
+  handleDeleteProducts = (id) => {
+      let products = this.state.products;
+      products = products.filter((product) => product.id !== id)
+
+      this.setState({
+          products
+      })
+  }
+
+  getCartCount = () => {
+    const products = this.state.products;
+    let count = 0;
+    products.forEach((product) => {
+        count += product.qty;
+      })
+    return count;
+  }
+
+  render() {
+    const {products} = this.state;
+    return (
+      <div className="App">
+        <Navbar
+          count = {this.getCartCount()}
+        />
+        <Cart
+          products = {products}
+          onIncreaseQuantity = {this.handleIncreaseQuantity}
+          onDecreaseQuantity = {this.handleDecreaseQuantity}
+          onDeleteProduct = {this.handleDeleteProducts}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+
+```
+
+- Cart.js
+```js
+import React from "react";
+import CartItem from "./CartItem";
+
+const Cart = (props) => {
+
+        const products = props.products;
+        return (
+            <div className="cart">
+                {products.map((product) => {
+                    return <CartItem 
+                    product = {product} 
+                    key={products.id} 
+                    onIncreaseQuantity = {props.onIncreaseQuantity}
+                    onDecreaseQuantity = {props.onDecreaseQuantity}
+                    onDeleteProduct = {props.onDeleteProduct}
+                    />
+                })}
+            </div>
+        )
+}
+
+export default Cart;
+```
+
+- Navbar.js
+```js
+import React from "react";
+
+const Navbar = (props) => {
+        return(
+            <div style={styles.nav}>
+                <div style={styles.cartIconContainer}>
+                    <img style={styles.cartIcon} alt="Cart" src="https://cdn-icons-png.flaticon.com/128/2838/2838838.png"/>
+                    <span style={styles.cartCount}>{props.count}</span>
+                </div>
+            </div>
+        )
+}
+
+const styles = {
+    cartIcon: {
+      height: 32,
+      marginRight: 20
+    },
+    nav: {
+      height: 70,
+      background: '#4267b2',
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'center'
+    },
+    cartIconContainer: {
+      position: 'relative'
+    },
+    cartCount: {
+      background: 'yellow',
+      borderRadius: '50%',
+      padding: '4px 8px',
+      position: 'absolute',
+      right: 0,
+      top: -9
+    }
+  };
+
+export default Navbar;
+```
