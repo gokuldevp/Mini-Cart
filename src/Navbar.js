@@ -1,9 +1,6 @@
 import React from "react";
 
-class Navbar extends React.Component {
- 
-    render() {
-        
+const Navbar = () => {
         return(
             <div style={styles.nav}>
                 <div style={styles.cartIconContainer}>
@@ -12,7 +9,6 @@ class Navbar extends React.Component {
                 </div>
             </div>
         )
-    }
 }
 
 const styles = {
