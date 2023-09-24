@@ -54,6 +54,15 @@ class Cart extends React.Component {
             console.log(`Quantity of id: ${product.id} can't be decreased further`);
         }
     }
+
+    handleDeleteProducts = (id) => {
+        let products = this.state.products;
+        products = products.filter((product) => product.id !== id)
+
+        this.setState({
+            products
+        })
+    }
     
     render() {
         const products = this.state.products;
@@ -65,6 +74,7 @@ class Cart extends React.Component {
                     key={products.id} 
                     onIncreaseQuantity = {this.handleIncreaseQuantity}
                     onDecreaseQuantity = {this.handleDecreaseQuantity}
+                    onDeleteProduct = {this.handleDeleteProducts}
                     />
                 })}
             </div>

@@ -325,7 +325,7 @@ render() {
 }
 ```
 
-### Prompts
+### Prompts [cheatsheet](https://www.freecodecamp.org/news/react-props-cheatsheet/)
 - Note: In React, "props" is short for "properties," and it refers to a mechanism for passing data from a parent component to a child component
 - Example 
 ```js
@@ -366,7 +366,7 @@ export default ChildComponent;
 ===========================================================================
 ### Adding products as propts
 * Step 1: Create a list containing product details in the Cart.js file
-```
+```js
 constructor () {
         super();
         this.state = {
@@ -403,7 +403,7 @@ const products = this.state.products;
 ```
 
 * Step 3: add the file as propt to CartItems using map, Key needed to be added as a unique identifier
-```
+```js
 render() {
     const products = this.state.products;
     return (
@@ -419,7 +419,7 @@ render() {
 }
 ```
 * Step 4: Use the propts inside the cartitem.js to render the details
-```
+```js
 const {price, title, qty, img} = this.props.product;
 ```
 
@@ -482,5 +482,42 @@ render() {
     className="action-icons" 
     src="https://cdn-icons-png.flaticon.com/512/659/659892.png"
     onClick={() => this.props.onDecreaseQuantity(this.props.product)}
+/>
+```
+
+### Handle Delete Products
+* Step 1: Create function to handle delete product in cart.js
+```js
+handleDeleteProducts = (id) => {
+    let products = this.state.products;
+    products = products.filter((product) => product.id !== id)
+
+    this.setState({
+        products
+    })
+}
+```
+* Step 2: Add the function as propts
+```js
+        return (
+            <div className="cart">
+                {products.map((product) => {
+                    return <CartItem 
+                    product = {product} 
+                    key={products.id} 
+                    onIncreaseQuantity = {this.handleIncreaseQuantity}
+                    onDecreaseQuantity = {this.handleDecreaseQuantity}
+                    onDeleteProduct = {this.handleDeleteProducts}
+                    />
+                })}
+            </div>
+        )
+```
+* Step 3: Call the function in the CartItems.js
+```
+    <img alt="delete" 
+    className="action-icons" 
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"
+    onClick={() => onDeleteProduct(product.id)}
 />
 ```

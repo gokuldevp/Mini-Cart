@@ -51,8 +51,9 @@ class CartItem extends React.Component {
 
 
     render() {
-        const {price, title, qty, img} = this.props.product; // Object destructuring
-
+        const {product, onIncreaseQuantity,onDecreaseQuantity, onDeleteProduct} = this.props;
+        const {price, title, qty, img} = product; // Object destructuring
+        
         return(
             <div className="cart-item">
                 <div className="left-block">
@@ -68,17 +69,18 @@ class CartItem extends React.Component {
                             alt="increase"
                             className="action-icons" 
                             src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"
-                            onClick={() => this.props.onIncreaseQuantity(this.props.product)}
+                            onClick={() => onIncreaseQuantity(product)}
                         />
                         <img 
                             alt="decrease" 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/512/659/659892.png"
-                            onClick={() => this.props.onDecreaseQuantity(this.props.product)}
+                            onClick={() => onDecreaseQuantity(product)}
                         />
                             <img alt="delete" 
                             className="action-icons" 
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"
+                            onClick={() => onDeleteProduct(product.id)}
                         />
                     </div>
                 </div>
