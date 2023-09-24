@@ -17,13 +17,13 @@ class CartItem extends React.Component {
      * It logs the current quantity to the console before the update and after the update
      */
     increaseQuantity = () => {
-        console.log(this.state.qty); // Log the current quantity to the console
+        console.log(this.props.product); // Log the current quantity to the console
         
         // set state form 1:
         this.setState(({
-            qty: this.state.qty + 1
+            qty: this.props.product.qty + 1
             }), () => {
-            console.log(this.state.qty);
+            console.log(this.props.product);
             });       
 
         // set state form 2: - if prevState require, user this
@@ -51,7 +51,7 @@ class CartItem extends React.Component {
 
 
     render() {
-        const {price, title, qty, img} = this.state; // Object destructuring
+        const {price, title, qty, img} = this.props.product; // Object destructuring
 
         return(
             <div className="cart-item">
