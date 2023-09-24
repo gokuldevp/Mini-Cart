@@ -504,7 +504,7 @@ handleDeleteProducts = (id) => {
                 {products.map((product) => {
                     return <CartItem 
                     product = {product} 
-                    key={products.id} 
+                    key={product.id} 
                     onIncreaseQuantity = {this.handleIncreaseQuantity}
                     onDecreaseQuantity = {this.handleDecreaseQuantity}
                     onDeleteProduct = {this.handleDeleteProducts}
@@ -521,3 +521,5 @@ handleDeleteProducts = (id) => {
     onClick={() => onDeleteProduct(product.id)}
 />
 ```
+
+### Adding NavBar to component

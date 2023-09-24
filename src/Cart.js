@@ -46,7 +46,7 @@ class Cart extends React.Component {
         const index = products.indexOf(product)
         if (products[index].qty > 0) {
             products[index].qty --;
-            console.log(`Quantity of id: ${product.id} has been increased by 1`);
+            console.log(`Quantity of id: ${product.id} has been Decreased by 1`);
             this.setState({
                 products
             })
