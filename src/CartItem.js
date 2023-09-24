@@ -1,57 +1,8 @@
 import React from "react";
 
-class CartItem extends React.Component {
-    // constructor() {
-    //     super();
-    //     this.state = {      // Creating a object state
-    //         price: 989,
-    //         title: 'Mobile Phone',
-    //         qty: 0,
-    //         img: ""
-    //     }
-    //     // this.increaseQuantity = this.increaseQuantity.bind(this);
-    // }
+const CartItem = (props) => {
 
-    /**
-     * Increases the quantity by 1 and updates the component's state.
-     * It logs the current quantity to the console before the update and after the update
-     */
-    // increaseQuantity = () => {
-    //     console.log(this.props.product); // Log the current quantity to the console
-        
-    //     // set state form 1:
-    //     this.setState(({
-    //         qty: this.props.product.qty + 1
-    //         }), () => {
-    //         console.log(this.props.product);
-    //         });       
-
-        // set state form 2: - if prevState require, user this
-        // this.setState((prevState) => {
-        //     return {
-        //         qty: prevState.qty +1
-        //     }
-        // }, () => {
-        //     console.log(this.state.qty)
-        // });
-    // };
-
-    /**
-     * Decrease the quantity by 1 and updates the component's state if the quantity is more than 0.
-     */
-    // decreaseQuantity = () => {
-    //     this.setState((prevState) => {
-    //         if (prevState.qty>0) {
-    //             return {
-    //                 qty: prevState.qty - 1
-    //             }
-    //         }
-    //     });
-    // }
-
-
-    render() {
-        const {product, onIncreaseQuantity,onDecreaseQuantity, onDeleteProduct} = this.props;
+        const {product, onIncreaseQuantity,onDecreaseQuantity, onDeleteProduct} = props;
         const {price, title, qty, img} = product; // Object destructuring
         
         return(
@@ -86,7 +37,6 @@ class CartItem extends React.Component {
                 </div>
             </div>
         )
-    }
 }
 
 const styles = {            //Creating object for style
