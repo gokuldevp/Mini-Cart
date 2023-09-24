@@ -402,7 +402,7 @@ constructor () {
 const products = this.state.products;
 ```
 
-* Step 3: add the file as propt to CartItems using map
+* Step 3: add the file as propt to CartItems using map, Key needed to be added as a unique identifier
 ```
 render() {
     const products = this.state.products;
@@ -421,4 +421,66 @@ render() {
 * Step 4: Use the propts inside the cartitem.js to render the details
 ```
 const {price, title, qty, img} = this.props.product;
+```
+
+### Handling increaseQuantity and decreaseQuantity in using prompt
+* Step 1: Create a function to handle increaseQuantity and decrease function in Cart.js
+```js
+handleIncreaseQuantity = (product) => {
+    const products = this.state.products;
+    const index = products.indexOf(product)
+    products[index].qty ++;
+    console.log(`Quantity of id: ${product.id} has been increased by 1`);
+    this.setState({
+        products
+    })
+}
+
+handleDecreaseQuantity = (product) => {
+    const products = this.state.products;
+    const index = products.indexOf(product)
+    if (products[index].qty > 0) {
+        products[index].qty --;
+        console.log(`Quantity of id: ${product.id} has been increased by 1`);
+        this.setState({
+            products
+        })
+    } else {
+        console.log(`Quantity of id: ${product.id} can't be decreased further`);
+    }
+}
+```
+* Step 2: Add the function as propts
+```js
+render() {
+        const products = this.state.products;
+        return (
+            <div className="cart">
+                {products.map((product) => {
+                    return <CartItem 
+                    product = {product} 
+                    key={products.id} 
+                    onIncreaseQuantity = {this.handleIncreaseQuantity}
+                    onDecreaseQuantity = {this.handleDecreaseQuantity}
+                    />
+                })}
+            </div>
+        )
+    }
+```
+
+* Step 3: Call the function in the CartItems.js
+```jsx
+<img 
+    alt="increase"
+    className="action-icons" 
+    src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"
+    onClick={() => this.props.onIncreaseQuantity(this.props.product)}
+/>
+<img 
+    alt="decrease" 
+    className="action-icons" 
+    src="https://cdn-icons-png.flaticon.com/512/659/659892.png"
+    onClick={() => this.props.onDecreaseQuantity(this.props.product)}
+/>
 ```

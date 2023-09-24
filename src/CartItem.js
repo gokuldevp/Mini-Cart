@@ -1,30 +1,30 @@
 import React from "react";
 
 class CartItem extends React.Component {
-    constructor() {
-        super();
-        this.state = {      // Creating a object state
-            price: 989,
-            title: 'Mobile Phone',
-            qty: 0,
-            img: ""
-        }
-        // this.increaseQuantity = this.increaseQuantity.bind(this);
-    }
+    // constructor() {
+    //     super();
+    //     this.state = {      // Creating a object state
+    //         price: 989,
+    //         title: 'Mobile Phone',
+    //         qty: 0,
+    //         img: ""
+    //     }
+    //     // this.increaseQuantity = this.increaseQuantity.bind(this);
+    // }
 
     /**
      * Increases the quantity by 1 and updates the component's state.
      * It logs the current quantity to the console before the update and after the update
      */
-    increaseQuantity = () => {
-        console.log(this.props.product); // Log the current quantity to the console
+    // increaseQuantity = () => {
+    //     console.log(this.props.product); // Log the current quantity to the console
         
-        // set state form 1:
-        this.setState(({
-            qty: this.props.product.qty + 1
-            }), () => {
-            console.log(this.props.product);
-            });       
+    //     // set state form 1:
+    //     this.setState(({
+    //         qty: this.props.product.qty + 1
+    //         }), () => {
+    //         console.log(this.props.product);
+    //         });       
 
         // set state form 2: - if prevState require, user this
         // this.setState((prevState) => {
@@ -34,20 +34,20 @@ class CartItem extends React.Component {
         // }, () => {
         //     console.log(this.state.qty)
         // });
-    };
+    // };
 
     /**
      * Decrease the quantity by 1 and updates the component's state if the quantity is more than 0.
      */
-    decreaseQuantity = () => {
-        this.setState((prevState) => {
-            if (prevState.qty>0) {
-                return {
-                    qty: prevState.qty - 1
-                }
-            }
-        });
-    }
+    // decreaseQuantity = () => {
+    //     this.setState((prevState) => {
+    //         if (prevState.qty>0) {
+    //             return {
+    //                 qty: prevState.qty - 1
+    //             }
+    //         }
+    //     });
+    // }
 
 
     render() {
@@ -68,13 +68,13 @@ class CartItem extends React.Component {
                             alt="increase"
                             className="action-icons" 
                             src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"
-                            onClick={this.increaseQuantity}
+                            onClick={() => this.props.onIncreaseQuantity(this.props.product)}
                         />
                         <img 
                             alt="decrease" 
                             className="action-icons" 
                             src="https://cdn-icons-png.flaticon.com/512/659/659892.png"
-                            onClick={this.decreaseQuantity}
+                            onClick={() => this.props.onDecreaseQuantity(this.props.product)}
                         />
                             <img alt="delete" 
                             className="action-icons" 
