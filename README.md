@@ -362,3 +362,63 @@ function ChildComponent(props) {
 
 export default ChildComponent;
 ```
+
+===========================================================================
+### Adding products as propts
+* Step 1: Create a list containing product details in the Cart.js file
+```
+constructor () {
+        super();
+        this.state = {
+            products: [
+                {
+                    price: 19999,
+                    title: 'Mobile Phone',
+                    qty: 0,
+                    img: "",
+                    id: 1
+                },
+                {
+                    price: 49999,
+                    title: 'Computer',
+                    qty: 0,
+                    img: "",
+                    id: 2
+                },
+                {
+                    price: 2000,
+                    title: 'Memmory card',
+                    qty: 0,
+                    img: "",
+                    id: 3
+                },
+            ]
+        }
+    }
+```
+
+* Step 2: Store the product details as const inside the render
+```
+const products = this.state.products;
+```
+
+* Step 3: add the file as propt to CartItems using map
+```
+render() {
+    const products = this.state.products;
+    return (
+        <div className="cart">
+            {products.map((product) => {
+                return <CartItem 
+                product = {product} 
+                key={products.id} 
+                        />
+            })}
+        </div>
+    )
+}
+```
+* Step 4: Use the propts inside the cartitem.js to render the details
+```
+const {price, title, qty, img} = this.props.product;
+```
