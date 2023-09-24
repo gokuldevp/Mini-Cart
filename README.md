@@ -758,3 +758,22 @@ const styles = {
 
 export default Navbar;
 ```
+
+### Adding total price
+* step 1: Create a fuction to add get the total price in App.js
+```js
+getTotalPrice = () => {
+const products = this.state.products;
+let total = 0;
+products.forEach((product) => {
+    total += product.qty * product.price;
+    })
+return total;
+}
+```
+* Step 2: call the fuction inside the App.js file
+```js
+<div style={{margin: 10}}>
+    <h4>Total: {this.getTotalPrice()}</h4>
+</div>
+```
