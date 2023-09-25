@@ -73,7 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Mini Project: Starting the project
 
 * Step 1: Create a react app
-```
+```shell
 npx create-react-app cart
 ```
 * Step 2: remove the unwanted file, only App.js, index.css and index.js remains
@@ -85,7 +85,7 @@ npx create-react-app cart
 - import React from "react"
 - Create a class called CartItem extending from React.component
 - Create the cart items using jsx
-```
+```js
 import React from "react";
 
 class CartItem extends React.Component {
@@ -112,7 +112,7 @@ export default CartItem;
 ```
 * Step 2: Style the CartItem components
 - Note: We style in react using objects, we need to write the styles in camel case
-```
+```js
 <img alt="" style={styles.image} /> {/* Applying the created syle*/}
 
 
@@ -126,7 +126,7 @@ const styles = {            //Creating object for style
 }
 ```
 - Style can also be written directly inside the jsx file style={{}}
-```
+```js
 <div style={{fontSize:25}}>Phone</div>
 ```
 
@@ -134,14 +134,14 @@ const styles = {            //Creating object for style
 - Note: In JavaScript, the term "state" typically refers to the current condition or data associated with a component or object at a specific point in time. State is used to represent and manage information that can change over time as a result of user interactions, data fetching, or other factors. It's a fundamental concept in building dynamic web applications and is commonly used in libraries and frameworks like React.
 * Step 1: Create the img tag (for creating the add, minus and delete button for cart)
 * Step 2: Add the alt, className and the src
-```
+```js
 <img alt="increase" className="action-icons" src="https://w7.pngwing.com/pngs/68/239/png-transparent-number-computer-icons-plus-miscellaneous-game-plus.png"/>
 <img alt="decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/659/659892.png"/>
 <img alt="delete" className="action-icons" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"/>
 ```
 
 * Step 3: Create a new state inside the constructor for CartItem.js
-```
+```js
 constructor() {
     super();
     this.state = {      // Creating a object state
@@ -154,7 +154,7 @@ constructor() {
 ```
 
 * Step 4: Use the state inside the jsx
-```
+```js
 const {price, title, qty} = this.state; // Object destructuring
 
 {/*Inside jsx*/}
@@ -165,7 +165,7 @@ const {price, title, qty} = this.state; // Object destructuring
 ### Events in React [Handling events docs](https://react.dev/learn/responding-to-events#adding-event-handlers)
 
 * Step 1: Add onClick in the jsx in CartItem.js
-```
+```js
 <img 
     alt="increase"
     className="action-icons" 
@@ -176,7 +176,7 @@ const {price, title, qty} = this.state; // Object destructuring
 
 * Step 2: Create a function to increase quantity inside the class Cartitem
     - notes: if we are using normal function syntax we need to bind the function with this onClick={this.increaseQuantity.bind(this)}
-```
+```js
     increaseQuantity = () => {
         console.log(this.state.qty);
     }
@@ -300,7 +300,7 @@ export default Counter;
 
 ### Rendering list in react
 1. We can render the elements of the array directly my adding the list inside the jsx as javascript 
-```
+```js
 render() {
     const myList = [1,2,3,4,5]
     return (
@@ -312,7 +312,7 @@ render() {
 ```
 
 2. We can do operation on list using the map function
-```
+```js
 render() {
     const myList = [1,2,3,4,5]
     return (
@@ -514,7 +514,7 @@ handleDeleteProducts = (id) => {
         )
 ```
 * Step 3: Call the function in the CartItems.js
-```
+```jsx
     <img alt="delete" 
     className="action-icons" 
     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"
@@ -763,12 +763,12 @@ export default Navbar;
 * step 1: Create a fuction to add get the total price in App.js
 ```js
 getTotalPrice = () => {
-const products = this.state.products;
-let total = 0;
-products.forEach((product) => {
-    total += product.qty * product.price;
-    })
-return total;
+    const products = this.state.products;
+    let total = 0;
+    products.forEach((product) => {
+        total += product.qty * product.price;
+        })
+    return total;
 }
 ```
 * Step 2: call the fuction inside the App.js file
@@ -777,3 +777,6 @@ return total;
     <h4>Total: {this.getTotalPrice()}</h4>
 </div>
 ```
+========================================================================
+
+## Firebase: Mini Project extended - I
