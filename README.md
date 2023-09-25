@@ -779,4 +779,173 @@ getTotalPrice = () => {
 ```
 ========================================================================
 
-## Firebase: Mini Project extended - I
+# React Component Lifecycle Phases
+
+React components go through a series of phases during their lifecycle, each with specific methods that you can use to control and manage the behavior of your components. Understanding these phases is crucial for building robust and efficient React applications. Here, we'll explore the three main phases: Mounting, Updating, and Unmounting.
+
+## 1. Mounting Phase
+
+The Mounting phase is the initial phase when a React component is being created and inserted into the DOM (Document Object Model). This phase consists of the following key methods:
+
+### `constructor()`
+
+- This is the first method called when a component is instantiated.
+- It's used for setting up the component's initial state and binding event handlers.
+- You should call `super(props)` before accessing `this.props` in the constructor.
+
+### `static getDerivedStateFromProps(props, state)`
+
+- This method is rarely used but allows you to update the component's state based on changes in its props.
+
+### `render()`
+
+- The `render` method is mandatory and returns the JSX (or elements) that will be rendered on the screen.
+- It should be a pure function without side effects.
+
+### `componentDidMount()`
+
+- This method is called after the component has been rendered in the DOM.
+- It's commonly used for tasks like making network requests, setting up subscriptions, or interacting with the DOM.
+
+```js
+import React, { Component } from 'react';
+
+class MountingExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'Hello, React!',
+    };
+  }
+
+  componentDidMount() {
+    // This method is called after the component is inserted into the DOM.
+    // It's a good place for tasks like making network requests.
+    setTimeout(() => {
+      this.setState({ message: 'Component has mounted!' });
+    }, 2000);
+  }
+
+  render() {
+    return <div>{this.state.message}</div>;
+  }
+}
+
+export default MountingExample;
+```
+
+## 2. Updating Phase
+
+The Updating phase occurs when a component is re-rendered due to changes in its state or props. This phase includes the following important methods:
+
+### `static getDerivedStateFromProps(props, state)`
+
+- This method can be used in this phase as well to update the component's state based on changes in its props.
+
+### `shouldComponentUpdate(nextProps, nextState)`
+
+- This method lets you control whether the component should re-render after receiving new props or state.
+- It can optimize performance by preventing unnecessary renders.
+
+### `render()`
+
+- Like in the Mounting phase, the `render` method is called during the Updating phase to generate the updated UI.
+
+### `componentDidUpdate(prevProps, prevState)`
+
+- This method is called after the component has re-rendered.
+- It's often used for side effects that depend on the previous props or state, such as updating the DOM in response to changes.
+
+```js
+import React, { Component } from 'react';
+
+class UpdatingExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // This method is used to control whether the component should re-render.
+    // We only allow re-render if the count is even.
+    return nextState.count % 2 === 0;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // This method is called after the component has re-rendered.
+    console.log('Component updated. New count:', this.state.count);
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button
+          onClick={() => this.setState({ count: this.state.count + 1 })}
+        >
+          Increment
+        </button>
+      </div>
+    );
+  }
+}
+
+export default UpdatingExample;
+```
+
+## 3. Unmounting Phase
+
+The Unmounting phase is when a component is being removed from the DOM. It involves a single, crucial method:
+
+### `componentWillUnmount()`
+
+- This method is called just before the component is unmounted.
+- It provides an opportunity to perform cleanup tasks, such as removing event listeners, canceling network requests, or clearing timers.
+- Failing to do these cleanup tasks can lead to memory leaks and unexpected behavior.
+
+```js
+import React, { Component } from 'react';
+
+class UpdatingExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    // This method is used to control whether the component should re-render.
+    // We only allow re-render if the count is even.
+    return nextState.count % 2 === 0;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // This method is called after the component has re-rendered.
+    console.log('Component updated. New count:', this.state.count);
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button
+          onClick={() => this.setState({ count: this.state.count + 1 })}
+        >
+          Increment
+        </button>
+      </div>
+    );
+  }
+}
+
+export default UpdatingExample;
+```
+
+Understanding and utilizing these lifecycle methods appropriately allows you to build React applications that are efficient, maintainable, and free from memory leaks.
+
+=========================================================================================================
+# Firebase: Mini Project extended - I
+
