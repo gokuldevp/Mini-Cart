@@ -947,5 +947,96 @@ export default UpdatingExample;
 Understanding and utilizing these lifecycle methods appropriately allows you to build React applications that are efficient, maintainable, and free from memory leaks.
 
 =========================================================================================================
+### Function chaining
+* Function chaining in JavaScript is a technique where you call multiple functions one after another on an object, using the return value of each function as the context for the next one. This is commonly used for working with methods that return the same object, allowing you to perform multiple operations on that object in a concise and readable manner.
+* Example: 
+```js
+const calculator = {
+  value: 0,
+  
+  add(x) {
+    this.value += x;
+    return this; // Return the calculator object for chaining
+  },
+  
+  subtract(x) {
+    this.value -= x;
+    return this; // Return the calculator object for chaining
+  },
+  
+  multiply(x) {
+    this.value *= x;
+    return this; // Return the calculator object for chaining
+  },
+  
+  divide(x) {
+    this.value /= x;
+    return this; // Return the calculator object for chaining
+  },
+  
+  getValue() {
+    return this.value;
+  }
+};
+
+const result = calculator
+  .add(5)
+  .multiply(2)
+  .subtract(3)
+  .divide(2)
+  .getValue();
+
+console.log(result); 
+```
+
+=========================================================================================================
+### Setting up Firebase
+* Step 1: Go to https://firebase.google.com
+* Step 2: Click Get Started
+* Step 3: Click on Create a Project
+* Step 4: Give a name for the Project -> Continue
+* Step 5: Enable Google Analytics for this project - Disable it(Not needed for the current project) -> Create Project
+* Step 6: Get started by adding Firebase to your app -> Click Web
+* Step 7: Register App -> give a name -> Click Register App
+* Step 8: Add Firebase SDK -> Click Continue with console (note: here we will be provided with configuration details which we can access again from project settings)
+* Step 9: Build -> Firestore Database -> Click Create Database Button -> Select Start in test mode -> Next -> Cloud Firestore location -> Enables
+* Step 10: Create a new collection(Click Start collection) -> Give name(eg: products) -> Next 
+* Step 11: Add the fileds (Note: give auto id for autogenerating ids)
+* Step 12: Add other items to the collection
+
+
 # Firebase: Mini Project extended - I
+* Step 1: Install firebase
+```shell
+npm install firebase
+```
+
+* Step 2: require the firebase in the index.js
+```js
+// import * as firebase from 'firebase';
+// import 'firebase/firestore';
+```
+* Step 3: Add the configuration of firebase in the index.js file.
+
+```js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "***************************************",
+  authDomain: "*********************************",
+  projectId: "**************",
+  storageBucket: "*************************",
+  messagingSenderId: "*******************",
+  appId: "*******************************"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+```
+
 

@@ -1,6 +1,7 @@
 import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
+import Practice from "./FirebaseAuth";
 
 class App extends React.Component {
   constructor () {
@@ -99,6 +100,7 @@ class App extends React.Component {
         <div style={{margin: 10}}>
           <h4>Total: {this.getTotalPrice()}</h4>
         </div>
+        <Practice/>
       </div>
       
     );
