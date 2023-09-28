@@ -1013,5 +1013,74 @@ npm install firebase
 
 * Step 2: require the create a new file called FirebaseInit.js and add the firebase config inside it
 * Step 3: import getFirestore and Initialize Cloud Firestore and get a reference to the service
+```js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "Your API Key",
+  authDomain: "Your authDomain",
+  projectId: "Your Project id",
+  storageBucket: "Your storageBucket",
+  messagingSenderId: "Your Message Sender ID",
+  appId: "Your app id"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(app);
+```
+* Step 4: Import the db in the required component file
+```js
+import {db} from './FirebaseInit';
+```
+
+### Reading data from fire store [docs](https://firebase.google.com/docs/firestore/query-data/get-data)
+syntax used here
+```js
+import { collection, getDocs } from "firebase/firestore";
+
+const querySnapshot = await getDocs(collection(db, "cities"));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+```
+
+* Step 1: import collection, getDocs from "firebase/firestore";
+```js
+import { collection, getDocs } from "firebase/firestore";
+```
+
+* Step 2: Create a async function to get the product details
+```js
+  async getProductData () {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    let products = []
+    querySnapshot.forEach((doc) => {
+      products.push(doc.data())
+    });
+    return products
+  }
+```
+
+* Step 3: Use a componentDidMount to update the product state
+```js
+  async componentDidMount() {
+    try {
+        const products = await this.getProductData();
+        this.setState({
+            products
+        });
+    } catch (error) {
+        console.error("Error fetching data from Firebase:", error);
+    }
+  }
+```
 
