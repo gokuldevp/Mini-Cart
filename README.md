@@ -1005,38 +1005,13 @@ console.log(result);
 * Step 12: Add other items to the collection
 
 
-# Firebase: Mini Project extended - I
+# Firebase: Mini Project extended - I [firestore doce](https://firebase.google.com/docs/firestore)
 * Step 1: Install firebase
 ```shell
 npm install firebase
 ```
 
-* Step 2: require the firebase in the index.js
-```js
-// import * as firebase from 'firebase';
-// import 'firebase/firestore';
-```
-* Step 3: Add the configuration of firebase in the index.js file.
-
-```js
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "***************************************",
-  authDomain: "*********************************",
-  projectId: "**************",
-  storageBucket: "*************************",
-  messagingSenderId: "*******************",
-  appId: "*******************************"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-```
+* Step 2: require the create a new file called FirebaseInit.js and add the firebase config inside it
+* Step 3: import getFirestore and Initialize Cloud Firestore and get a reference to the service
 
 

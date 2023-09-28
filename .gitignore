@@ -9,7 +9,7 @@
 /coverage
 
 # Authentication
-/src/firebaseAuth.js
+/src/FirebaseInit.js
 
 # production
 /build

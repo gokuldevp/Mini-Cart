@@ -2,6 +2,7 @@ import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
 import Practice from "./FirebaseAuth";
+import {db} from './FirebaseInit'
 
 class App extends React.Component {
   constructor () {
