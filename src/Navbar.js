@@ -1,14 +1,37 @@
 import React from "react";
+// import AddProducts from "./AddProducts";
 
-const Navbar = (props) => {
-        return(
-            <div style={styles.nav}>
-                <div style={styles.cartIconContainer}>
-                    <img style={styles.cartIcon} alt="Cart" src="https://cdn-icons-png.flaticon.com/128/2838/2838838.png"/>
-                    <span style={styles.cartCount}>{props.count}</span>
-                </div>
-            </div>
-        )
+class Navbar extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      isAddProducts: false
+    }
+  }
+
+  openAddProductsForm() {
+    this.setState({isAddProducts: !this.state.isAddProducts})
+  }
+
+  render() {
+    return(
+      <div style={styles.nav}>
+
+          <div style={styles.cartIconContainer}>
+            <button
+            style={styles.addProducts} 
+            onClick={() => this.openAddProductsForm()}
+            >Add product</button>
+          </div>
+          <div style={styles.cartIconContainer}>
+              <img style={styles.cartIcon} alt="Cart" src="https://cdn-icons-png.flaticon.com/128/2838/2838838.png"/>
+              <span style={styles.cartCount}>{this.props.count}</span>
+          </div>
+          {/* <AddProducts/> */}
+      </div>
+  )
+  }
+
 }
 
 const styles = {
@@ -33,6 +56,11 @@ const styles = {
       position: 'absolute',
       right: 0,
       top: -9
+    },
+    addProducts: {
+      backgroundColor: 'Indigo',
+      borderRadius: '50%',
+      color:'white'
     }
   };
 

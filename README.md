@@ -1084,3 +1084,44 @@ import { collection, getDocs } from "firebase/firestore";
   }
 ```
 
+### Handling Product Quality update [Firebase update doc](https://firebase.google.com/docs/firestore/manage-data/add-data)
+* Step 1: import doc, updateDoc  from "firebase/firestore";
+```js
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
+```
+* Step 2: Create a function to handle the product quality update
+```js
+  handleQuantityChange = async (product, delta) => {
+    const products = [...this.state.products]; // Create a copy of the products array
+    const index = products.findIndex((p) => p.id === product.id); // Find the index of the product
+  
+    if (index !== -1) {
+      // Update the quantity
+      products[index].qty += delta;
+  
+      // Update Firestore
+      const productRef = doc(db, 'products', product.id);
+      await updateDoc(productRef, {
+        qty: products[index].qty,
+      });
+  
+      console.log(`Quantity of id: ${product.title} has been changed by ${delta}`);
+      this.setState({ products });
+    } else {
+      console.log(`Product with id ${product.id} not found in the state.`);
+    }
+  };
+```
+
+* Step 3: Use the product quality change function to update increase quality and decrease quality
+```js
+  // Handle increase in quantity
+  handleIncreaseQuantity = (product) => {
+    this.handleQuantityChange(product, 1);
+  };
+
+  // Handle decrease in quantity
+  handleDecreaseQuantity = (product) => {
+    this.handleQuantityChange(product, -1);
+  };
+```

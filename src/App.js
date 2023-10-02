@@ -2,7 +2,7 @@ import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
 import {db} from './FirebaseInit';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
 
 
 
@@ -10,30 +10,8 @@ class App extends React.Component {
   constructor () {
       super();
       this.state = {
-          products: []
-          // [
-          //     {
-          //         price: 19999,
-          //         title: 'Mobile Phone',
-          //         qty: 0,
-          //         img: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2129&q=80",
-          //         id: 1
-          //     },
-          //     {
-          //         price: 49999,
-          //         title: 'Computer',
-          //         qty: 0,
-          //         img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
-          //         id: 2
-          //     },
-          //     {
-          //         price: 2000,
-          //         title: 'Memory card',
-          //         qty: 0,
-          //         img: "https://images.unsplash.com/photo-1632251350035-7f750a5973b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1802&q=80",
-          //         id: 3
-          //     },
-          // ]
+          products: [],
+          addProductForm: false
       }
   }
 
@@ -48,38 +26,49 @@ class App extends React.Component {
     }
   }
 
-  async getProductData () {
+  async getProductData() {
     const querySnapshot = await getDocs(collection(db, "products"));
-    let products = []
+    let products = [];
     querySnapshot.forEach((doc) => {
-      products.push(doc.data())
+      const productData = doc.data();
+      // Add the document ID to the product data
+      productData.id = doc.id;
+      products.push(productData);
     });
-    return products
+    console.log(products);
+    return products;
   }
 
+  handleQuantityChange = async (product, delta) => {
+    const products = [...this.state.products]; // Create a copy of the products array
+    const index = products.indexOf(product); // Find the index of the product
+  
+    if (index !== -1) {
+      // Update the quantity
+      products[index].qty += delta;
+  
+      // Update Firestore
+      const productRef = doc(db, 'products', product.id);
+      await updateDoc(productRef, {
+        qty: products[index].qty,
+      });
+  
+      console.log(`Quantity of id: ${product.title} has been changed by ${delta}`);
+      this.setState({ products });
+    } else {
+      console.log(`Product with id ${product.id} not found in the state.`);
+    }
+  };
+
+  // Handle increase in quantity
   handleIncreaseQuantity = (product) => {
-      const products = this.state.products;
-      const index = products.indexOf(product)
-      products[index].qty ++;
-      console.log(`Quantity of id: ${product.id} has been increased by 1`);
-      this.setState({
-          products
-      })
-  }
+    this.handleQuantityChange(product, 1);
+  };
 
+  // Handle decrease in quantity
   handleDecreaseQuantity = (product) => {
-      const products = this.state.products;
-      const index = products.indexOf(product)
-      if (products[index].qty > 0) {
-          products[index].qty --;
-          console.log(`Quantity of id: ${product.id} has been Decreased by 1`);
-          this.setState({
-              products
-          })
-      } else {
-          console.log(`Quantity of id: ${product.id} can't be decreased further`);
-      }
-  }
+    this.handleQuantityChange(product, -1);
+  };
 
   handleDeleteProducts = (id) => {
       let products = this.state.products;
@@ -108,6 +97,10 @@ class App extends React.Component {
     return total;
   }
 
+  onAddProduct = () => {
+
+  }
+
   render() {
     
     const {products} = this.state;
@@ -126,7 +119,6 @@ class App extends React.Component {
           <h4>Total: {this.getTotalPrice()}</h4>
         </div>
       </div>
-      
     );
   }
 }
