@@ -1,5 +1,5 @@
 import React from "react";
-import Cart from "./Cart";
+import Body from "./Body";
 import Navbar from "./Navbar";
 import {db} from './FirebaseInit';
 import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
@@ -9,7 +9,7 @@ class App extends React.Component {
       super();
       this.state = {
           products: [],
-          addProductForm: false
+          isAddProducts: false
       }
   }
 
@@ -95,26 +95,29 @@ class App extends React.Component {
   }
 
   onAddProduct = () => {
+    this.setState({isAddProducts: true})
+  }
 
+  offAddProduct = () => {
+    this.setState({isAddProducts: false})
   }
 
   render() {
-    
-    const {products} = this.state;
     return (
       <div className="App">
         <Navbar
           count = {this.getCartCount()}
+          onAddProduct = {this.onAddProduct}
         />
-        <Cart
-          products = {products}
-          onIncreaseQuantity = {this.handleIncreaseQuantity}
-          onDecreaseQuantity = {this.handleDecreaseQuantity}
-          onDeleteProduct = {this.handleDeleteProducts}
+        <Body
+        products={this.state.products}
+        onIncreaseQuantity = {this.handleIncreaseQuantity}
+        onDecreaseQuantity = {this.handleDecreaseQuantity}
+        onDeleteProduct = {this.handleDeleteProducts}
+        isAddProducts = {this.state.isAddProducts}
+        totalPrice = {this.getTotalPrice}
+        offAddProduct = {this.offAddProduct}
         />
-        <div style={{margin: 10}}>
-          <h4>Total: {this.getTotalPrice()}</h4>
-        </div>
       </div>
     );
   }

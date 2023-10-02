@@ -1,36 +1,21 @@
 import React from "react";
-// import AddProducts from "./AddProducts";
 
-class Navbar extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      isAddProducts: false
-    }
-  }
-
-  openAddProductsForm() {
-    this.setState({isAddProducts: !this.state.isAddProducts})
-  }
-
-  render() {
+function Navbar(props) {
     return(
       <div style={styles.nav}>
 
           <div style={styles.cartIconContainer}>
             <button
             style={styles.addProducts} 
-            onClick={() => this.openAddProductsForm()}
+            onClick={() => props.onAddProduct()}
             >Add product</button>
           </div>
           <div style={styles.cartIconContainer}>
               <img style={styles.cartIcon} alt="Cart" src="https://cdn-icons-png.flaticon.com/128/2838/2838838.png"/>
-              <span style={styles.cartCount}>{this.props.count}</span>
+              <span style={styles.cartCount}>{props.count}</span>
           </div>
-          {/* <AddProducts/> */}
       </div>
   )
-  }
 
 }
 

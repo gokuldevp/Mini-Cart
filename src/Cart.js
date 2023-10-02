@@ -3,18 +3,22 @@ import CartItem from "./CartItem";
 
 const Cart = (props) => {
 
-        const products = props.products;
+        const {products, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct, totalPrice} = props;
         return (
             <div className="cart">
                 {products.map((product) => {
                     return <CartItem 
                     product = {product} 
-                    key={products.id} 
-                    onIncreaseQuantity = {props.onIncreaseQuantity}
-                    onDecreaseQuantity = {props.onDecreaseQuantity}
-                    onDeleteProduct = {props.onDeleteProduct}
+                    key={product.id} 
+                    onIncreaseQuantity = {onIncreaseQuantity}
+                    onDecreaseQuantity = {onDecreaseQuantity}
+                    onDeleteProduct = {onDeleteProduct}
                     />
                 })}
+
+            <div style={{margin: 10}}>
+                 <h4>Total: {totalPrice()}</h4>
+            </div>
             </div>
         )
 }
