@@ -2,9 +2,7 @@ import React from "react";
 import Cart from "./Cart";
 import Navbar from "./Navbar";
 import {db} from './FirebaseInit';
-import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
-
-
+import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 class App extends React.Component {
   constructor () {
@@ -35,12 +33,11 @@ class App extends React.Component {
       productData.id = doc.id;
       products.push(productData);
     });
-    console.log(products);
     return products;
   }
 
   handleQuantityChange = async (product, delta) => {
-    const products = [...this.state.products]; // Create a copy of the products array
+    let products = [...this.state.products]; // Create a copy of the products array
     const index = products.indexOf(product); // Find the index of the product
   
     if (index !== -1) {
@@ -52,7 +49,8 @@ class App extends React.Component {
       await updateDoc(productRef, {
         qty: products[index].qty,
       });
-  
+      
+      products = await this.getProductData();
       console.log(`Quantity of id: ${product.title} has been changed by ${delta}`);
       this.setState({ products });
     } else {
@@ -70,10 +68,9 @@ class App extends React.Component {
     this.handleQuantityChange(product, -1);
   };
 
-  handleDeleteProducts = (id) => {
-      let products = this.state.products;
-      products = products.filter((product) => product.id !== id)
-
+  handleDeleteProducts = async (id) => {
+      await deleteDoc(doc(db, "products", id));
+      const products = await this.getProductData();
       this.setState({
           products
       })

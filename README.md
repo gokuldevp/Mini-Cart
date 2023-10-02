@@ -1125,3 +1125,20 @@ import { collection, getDocs, doc, updateDoc } from "firebase/firestore";
     this.handleQuantityChange(product, -1);
   };
 ```
+
+### Handle Delete Product from firebase [firebase delete doc](https://firebase.google.com/docs/firestore/manage-data/delete-data#delete_documents)
+* Step 1: import doc, deleteDoc from the firestore
+```js
+import { doc, deleteDoc } from "firebase/firestore";
+```
+
+* Step 2: Create method handling delete
+```js
+  handleDeleteProducts = async (id) => {
+      await deleteDoc(doc(db, "products", id));
+      const products = await this.getProductData();
+      this.setState({
+          products
+      })
+  }
+```

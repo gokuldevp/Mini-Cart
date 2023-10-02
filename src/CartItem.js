@@ -4,7 +4,7 @@ const CartItem = (props) => {
 
 
     const {product, onIncreaseQuantity,onDecreaseQuantity, onDeleteProduct} = props;
-    const {price, title, qty, img} = product; // Object destructuring
+    const {price, title, qty, img, id} = product; // Object destructuring
     
     return(
         <div className="cart-item">
@@ -32,7 +32,7 @@ const CartItem = (props) => {
                         <img alt="delete" 
                         className="action-icons" 
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_KW_16p1iuJg5nfDvYyJjygmrrEtBVi1-K_SX1csj&s"
-                        onClick={() => onDeleteProduct(product.id)}
+                        onClick={() => onDeleteProduct(id)}
                     />
                 </div>
             </div>
