@@ -102,32 +102,46 @@ class App extends React.Component {
     this.setState({isAddProducts: false})
   }
 
-  handleAddingProducts = async (product) => {
-    // Parse the JSON string into a JavaScript object
-    const productObject = JSON.parse(product);
-    console.log(productObject)
-    await addDoc(collection(db, "products"), productObject);
-    console.log("Product added to the database");
-  }
+// This function is responsible for adding a product to a Firestore collection.
+handleAddingProducts = async (product) => {
+  // Parse the JSON string (product) into a JavaScript object (productObject).
+  const productObject = JSON.parse(product);
+  console.log(productObject); // Log the parsed product object for debugging purposes.
   
-  onAddFormSubmit = async(event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const responseBody = {}; // Assuming responseBody is defined
-    formData.forEach((value, property) => {
-      responseBody[property] = value;
-    });
-    this.offAddProduct()
+  // Add the productObject to the Firestore collection named "products".
+  await addDoc(collection(db, "products"), productObject);
+  console.log("Product added to the database"); // Log a success message.
+}
+
+// This function handles the form submission event.
+onAddFormSubmit = async(event) => {
+  event.preventDefault(); // Prevent the default form submission behavior.
   
-    const product = JSON.stringify(responseBody);
-    console.log(product);
-    await this.handleAddingProducts(product);
+  // Create a FormData object from the submitted form.
+  const formData = new FormData(event.target);
+  const responseBody = {}; // Initialize an empty object for storing form data.
   
-    const products = await this.getProductData();
-    this.setState({
-      products
-    });
-  }
+  // Iterate over the form data and populate the responseBody object.
+  formData.forEach((value, property) => {
+    responseBody[property] = value;
+  });
+  
+  this.offAddProduct(); // Assuming this function is defined, it's called to handle UI interactions.
+  
+  // Convert the responseBody object into a JSON string (product).
+  const product = JSON.stringify(responseBody);
+  console.log(product); // Log the JSON string for debugging purposes.
+  
+  // Call the handleAddingProducts function to add the product to Firestore.
+  await this.handleAddingProducts(product);
+  
+  // Fetch the updated list of products from Firestore and update the component's state.
+  const products = await this.getProductData();
+  this.setState({
+    products
+  });
+}
+
   
   
 
