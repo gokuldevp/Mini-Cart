@@ -1142,3 +1142,88 @@ import { doc, deleteDoc } from "firebase/firestore";
       })
   }
 ```
+
+### Handle Adding Product to the firebase. [firebase add document doc](https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document)
+* Step 1: Create a form to retreve the data from the user. (AddProducts.js componenet)
+
+```js
+const AddProducts = (props) => {
+  return (
+    <div style={styles.addProductsFormContainer} className="add-products-form-container">
+      <h1>ADD PRODUCT</h1>
+      <form style={styles.form} method="POST" onSubmit={props.onAddFormSubmit}>
+        <div style={styles.formField}>
+          <label htmlFor="title" style={styles.label}>Product Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            style={styles.input}
+            required
+          />
+        </div>
+        <div style={styles.formField}>
+          <label htmlFor="img" style={styles.label}>Product Image Url:</label>
+          <input
+            type="text"
+            id="img"
+            name="img"
+            style={styles.input}
+            required
+          />
+        </div>
+        <div style={styles.formField}>
+          <label htmlFor="price" style={styles.label}>Price:</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            style={styles.input}
+            required
+          />
+        </div>
+        <div style={styles.formField}>
+          <label htmlFor="qty" style={styles.label}>Product Quantity:</label>
+          <input
+            type="number"
+            id="qty"
+            name="qty"
+            style={styles.input}
+            required
+          />
+        </div>
+        <button type="submit" style={styles.button}>Add Product</button>
+        <button onClick={() => { props.offAddProduct() }} style={styles.cancelButton}>Cancel</button>
+      </form>
+    </div>
+  );
+}
+```
+* Step 2: Handle the Add product funtion in the App componenet
+```js
+  handleAddingProducts = async (product) => {
+    // Parse the JSON string into a JavaScript object
+    const productObject = JSON.parse(product);
+    await addDoc(collection(db, "products"), productObject);
+    console.log("Product added to the database");
+  }
+  
+  onAddFormSubmit = async(event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const responseBody = {}; // Assuming responseBody is defined
+    formData.forEach((value, property) => {
+      responseBody[property] = value;
+    });
+    this.offAddProduct()
+  
+    const product = JSON.stringify(responseBody);
+    console.log(product);
+    await this.handleAddingProducts(product);
+  
+    const products = await this.getProductData();
+    this.setState({
+      products
+    });
+  }
+```

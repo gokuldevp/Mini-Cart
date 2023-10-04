@@ -2,7 +2,7 @@ import React from "react";
 import Body from "./Body";
 import Navbar from "./Navbar";
 import {db} from './FirebaseInit';
-import { collection, getDocs, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, deleteDoc, addDoc } from "firebase/firestore";
 
 class App extends React.Component {
   constructor () {
@@ -102,6 +102,35 @@ class App extends React.Component {
     this.setState({isAddProducts: false})
   }
 
+  handleAddingProducts = async (product) => {
+    // Parse the JSON string into a JavaScript object
+    const productObject = JSON.parse(product);
+    console.log(productObject)
+    await addDoc(collection(db, "products"), productObject);
+    console.log("Product added to the database");
+  }
+  
+  onAddFormSubmit = async(event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const responseBody = {}; // Assuming responseBody is defined
+    formData.forEach((value, property) => {
+      responseBody[property] = value;
+    });
+    this.offAddProduct()
+  
+    const product = JSON.stringify(responseBody);
+    console.log(product);
+    await this.handleAddingProducts(product);
+  
+    const products = await this.getProductData();
+    this.setState({
+      products
+    });
+  }
+  
+  
+
   render() {
     return (
       <div className="App">
@@ -117,6 +146,7 @@ class App extends React.Component {
         isAddProducts = {this.state.isAddProducts}
         totalPrice = {this.getTotalPrice}
         offAddProduct = {this.offAddProduct}
+        onAddFormSubmit = {this.onAddFormSubmit}
         />
       </div>
     );

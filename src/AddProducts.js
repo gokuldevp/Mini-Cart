@@ -4,7 +4,7 @@ const AddProducts = (props) => {
   return (
     <div style={styles.addProductsFormContainer} className="add-products-form-container">
       <h1>ADD PRODUCT</h1>
-      <form style={styles.form} method="POST" action="#">
+      <form style={styles.form} method="POST" onSubmit={props.onAddFormSubmit}>
         <div style={styles.formField}>
           <label htmlFor="title" style={styles.label}>Product Title:</label>
           <input
@@ -12,6 +12,7 @@ const AddProducts = (props) => {
             id="title"
             name="title"
             style={styles.input}
+            required
           />
         </div>
         <div style={styles.formField}>
@@ -21,6 +22,7 @@ const AddProducts = (props) => {
             id="img"
             name="img"
             style={styles.input}
+            required
           />
         </div>
         <div style={styles.formField}>
@@ -30,6 +32,7 @@ const AddProducts = (props) => {
             id="price"
             name="price"
             style={styles.input}
+            required
           />
         </div>
         <div style={styles.formField}>
@@ -39,6 +42,7 @@ const AddProducts = (props) => {
             id="qty"
             name="qty"
             style={styles.input}
+            required
           />
         </div>
         <button type="submit" style={styles.button}>Add Product</button>

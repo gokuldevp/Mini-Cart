@@ -3,12 +3,13 @@ import Cart from "./Cart";
 import AddProducts from "./AddProducts";
 
 const Body = (props) => {
-    const {products, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct, isAddProducts, totalPrice, offAddProduct} = props;
+    const {products, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct, isAddProducts, totalPrice, offAddProduct, onAddFormSubmit} = props;
         return (
             <div className="body">
                 {isAddProducts ? 
                 <AddProducts
                 offAddProduct = {offAddProduct}
+                onAddFormSubmit = {onAddFormSubmit}
                 />:
                 <Cart
                 products = {products}
